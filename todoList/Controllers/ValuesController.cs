@@ -28,7 +28,6 @@ namespace todoList.Controllers
         {
             Task newTask = new Task
             {
-                TaskId = task.Id,
                 Title = task.Title,
                 Details = task.Details,
                 Date = task.Date   
