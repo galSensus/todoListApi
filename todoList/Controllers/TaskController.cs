@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
 using todoList.Models;
 
 namespace todoList.Controllers
@@ -42,12 +43,13 @@ namespace todoList.Controllers
         }
 
         [Route("api/task/deleteTask")]
-        [HttpPost]
-        public void DeleteTask(long taskId)
+        [HttpDelete]
+        public void DeleteTask(string taskId)
         {
+            int taskIdToDelete = int.Parse(taskId);
             using (var db = new TodoListEntities1())
             {
-                var deleteTask = db.Tasks.FirstOrDefault(x => x.TaskId == taskId);
+                var deleteTask = db.Tasks.FirstOrDefault(x => x.TaskId == taskIdToDelete);
                 db.Tasks.Remove(deleteTask);
                 db.SaveChanges();
             }
